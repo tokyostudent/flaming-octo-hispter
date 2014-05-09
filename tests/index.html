@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<div class="tsBody">
+    <div class="tsHeader"></div>
+    <div class="tsSearchBar">
+        <input value="sfsf"></input>
+    </div>
+    <div class="tsResults">
+        <ul class="listOfKanjiTranslations" data-bind="foreach: kanjiTranslations">
+            <li class="singleTranslation">
+                <ul class="listOfheadWords" data-bind="foreach: kebs">
+                    <li>
+                        <h1 data-bind="text: k"></h1>
+                        <ul class="listOfInf" data-bind="foreach: inf">
+                            <li data-bind="text: $data"></li>
+                        </ul>
+
+                        <ul class="listOfPri" data-bind="foreach: pri">
+                            <li data-bind="text: $data"></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="readingSense" data-bind="foreach: rebSense">
+                    <li class="tsReadingsSensesList">
+                    <li class="tsReadings">
+                        <ul>
+                            <!-- ko foreach: readings -->
+                            <li class="tsReading" data-bind="text: r"></li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+                    <div class="tsSenses">
+                        <!-- ko foreach: senses -->
+                        <li class="tsSense" data-bind="text: glosses"></li>
+                        <!-- /ko -->
+                    </div>
+        </ul>
+
+        </ul>
+        </ul>
+    </div>
+</div>
+<div class="tsFooter"></div>
+</div>
+
+
+</body>
+</html>
