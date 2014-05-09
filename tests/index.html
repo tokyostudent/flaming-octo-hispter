@@ -12,7 +12,7 @@
     </div>
     <div class="tsResults">
         <ul class="listOfKanjiTranslations" data-bind="foreach: kanjiTranslations">
-            <li class="singleTranslation">
+            <li>
                 <ul class="listOfheadWords" data-bind="foreach: kebs">
                     <li>
                         <h1 data-bind="text: k"></h1>
@@ -25,7 +25,16 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="readingSense" data-bind="foreach: rebSense">
+                <ul class="listOfReadingSense" data-bind="foreach: rebSenses">
+                    <li>
+                        <ul class="listOfReadings" data-bind="foreach: readings">
+                            <li>
+
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li class="tsReadingsSensesList">
                     <li class="tsReadings">
                         <ul>
@@ -39,7 +48,7 @@
                         <li class="tsSense" data-bind="text: glosses"></li>
                         <!-- /ko -->
                     </div>
-        </ul>
+                </ul>
 
         </ul>
         </ul>
