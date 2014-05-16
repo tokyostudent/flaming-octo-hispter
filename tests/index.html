@@ -1,18 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title> - jsFiddle demo</title>
+    <link rel="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" type="stylesheet"/>
+
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+
+    <style>
+        .tsSearchBar {
+            margin: 0.5em;
+        }
+        .tsSearchBar > input {
+            width: 100%;
+            font-size: 1.3em;
+        }
+        .tsResults {
+            border: 1px;
+            width: 100%;
+            height: auto;
+            background-color: green;
+        }
+
+
+    </style>
 </head>
 <body>
+
+
+<script type="text/javascript">
+
+var tsViewModel = {
+    kanjiTranslations: ko.observable([]) //,
+    //    kanaTranslations: [],
+    //    nonJapaneseTranslations: []
+};
+
+(function ($) {
+    var viewModel, searchBarInput;
+
+
+    viewModel = {
+    "kanjiTranslations":ko.observable([{
+        "kebs": [
+            {
+                "k":"紅葉",
+                "inf": [],
+                "pri": ["ichi1", "news1", "nf16"]
+            }            
+        ],
+        "rebSenses": [{
+            "readings": [{
+                "r": "こうよう",
+                "nokanji": false,
+                "inf": [],
+                "pri": ["ichi1", "news1", "nf16"]
+            }, {
+                "r": "もみじ",
+                "nokanji": false,
+                "inf": [],
+                "pri": ["ichi1"]
+            }],
+            "senses": [{
+                "pos": ["n", "vs"],
+                "glosses": ["autumn colours", "fall colors", "leaves changing color (colour)"]
+            }]
+        }, {
+            "readings": [{
+                "r": "こうよう",
+                "nokanji": false,
+                "pri": ["ichi1", "news1", "nf16"]
+            }],
+            "senses": [{
+                "glosses": ["leaves turning red", "red leaves"]
+            }]
+        }, {
+            "readings": [{
+                "r": "もみじ",
+                "nokanji": false,
+                "pri": ["ichi1"]
+            }],
+            "senses": [{
+                "pos": "n",
+                "glosses": ["(Japanese) maple (Acer japonicum)"]
+            }]
+        }]
+    }])
+};
+
+
+
+    searchBarInput = $(".tsSearchBar > input");
+    searchBarInput.keyup(function () {
+        $.ajax
+        ko.mapping.fromJS(jsonData, viewModel);
+    });
+
+
+    function hara() {
+        this.kanjiTranslations = ko.observableArray([1, 2, 3, 4]);
+    }
+
+    ko.applyBindings(new hara());
+
+    //ko.applyBindings(viewModel);
+
+
+})($);
+</script>
 
 <div class="tsBody">
     <div class="tsHeader"></div>
     <div class="tsSearchBar">
-        <input value="sfsf"></input>
+        <input value="sfsf"/>
     </div>
     <div class="tsResults">
         <ul class="listOfKanjiTranslations" data-bind="foreach: kanjiTranslations">
-            <li>
+            <pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
+
+        </ul>
+            <ul>
+
                 <ul class="listOfheadWords" data-bind="foreach: kebs">
                     <li>
                         <h1 data-bind="text: k"></h1>
@@ -51,7 +161,7 @@
                 </ul>
 
         </ul>
-        </ul>
+        </li>
     </div>
 </div>
 <div class="tsFooter"></div>
